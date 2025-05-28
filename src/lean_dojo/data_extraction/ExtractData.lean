@@ -1,6 +1,6 @@
 import Lean
 import Lake
-
+import Lean.Parser.Module -- for TSyntax `Lean.Parser.Module.header and headerToImports
 
 open Lean Elab System
 
@@ -406,7 +406,7 @@ end Traversal
 open Traversal
 
 
-def getImports (header: Syntax) : IO String := do
+def getImports (TSyntax `Lean.Parser.Module.header) : IO String := do
   -- Similar to `lean --deps` in Lean 3.
   let mut s := ""
 
